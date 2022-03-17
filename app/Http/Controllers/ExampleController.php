@@ -12,6 +12,8 @@ class ExampleController extends Controller
     public function __construct()
     {
         //
+
+        
     }
 
     //
