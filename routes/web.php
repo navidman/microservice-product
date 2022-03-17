@@ -13,6 +13,10 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+$router->group(['middleware' => 'auth:api'], function () use ($router) {
+    $router->get('product', ['uses' => 'ProductController@index']);
+    $router->post('product', ['uses' => 'ProductController@store']);
+    $router->patch('product/{product_no}', ['uses' => 'ProductController@update']);
+    $router->get('product/{product_no}', ['uses' => 'ProductController@show']);
+    $router->delete('product/{product_no}', ['uses' => 'ProductController@destroy']);
 });
