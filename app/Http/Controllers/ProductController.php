@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use App\Repositories\Interfaces\ProductRepositoryInterface;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -22,23 +21,37 @@ class ProductController extends Controller
         return response($products, Response::HTTP_OK);
     }
 
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-
+        $product = $this->repository->storeProduct($request);
+        return response($product, Response::HTTP_OK);
     }
 
     public function show($product_no)
     {
-
+        $product = $this->repository->getProduct($product_no);
+        if (is_null($product)) {
+            return response(null, Response::HTTP_NOT_FOUND);
+        }
+        return response($product, Response::HTTP_OK);
     }
 
-    public function update(Request $request, $product_no)
+    public function update(ProductRequest $request, $product_no)
     {
-
+        $product = $this->repository->getProduct($product_no);
+        if (is_null($product)) {
+            return response(null, Response::HTTP_NOT_FOUND);
+        }
+        $this->repository->updateProduct($request, $product);
+        return response($product, Response::HTTP_OK);
     }
 
     public function destroy($product_no)
     {
-
+        $product = $this->repository->getProduct($product_no);
+        if (is_null($product)) {
+            return response(null, Response::HTTP_NOT_FOUND);
+        }
+        return response(null, Response::HTTP_OK);
     }
 }
