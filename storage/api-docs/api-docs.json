@@ -1,0 +1,437 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Product-Microservice API",
+        "version": "0.1"
+    },
+    "paths": {
+        "/product": {
+            "get": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "products's info",
+                "description": "Get users's products",
+                "operationId": "produtsInfo",
+                "responses": {
+                    "200": {
+                        "description": "Sucess",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "data": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "title": {
+                                                                    "type": "string",
+                                                                    "example": "mobile"
+                                                                },
+                                                                "product_no": {
+                                                                    "type": "string",
+                                                                    "example": "CESV2SY"
+                                                                },
+                                                                "description": {
+                                                                    "type": "string",
+                                                                    "example": "some text"
+                                                                },
+                                                                "amount": {
+                                                                    "type": "string",
+                                                                    "example": "35000"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        },
+                                                        "collectionFormat": "multi"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "collectionFormat": "multi"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "example": 200
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Create A Product",
+                "description": "Create a product for an user based on data that passed",
+                "operationId": "createProduct",
+                "requestBody": {
+                    "description": "Pass Product data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "product_no",
+                                    "description",
+                                    "amount"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "example": "mobile"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "some text"
+                                    },
+                                    "amount": {
+                                        "type": "string",
+                                        "example": "35000"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Store Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "mobile"
+                                                },
+                                                "product_no": {
+                                                    "type": "string",
+                                                    "example": "CESV2SY"
+                                                },
+                                                "description": {
+                                                    "type": "string",
+                                                    "example": "some text"
+                                                },
+                                                "amount": {
+                                                    "type": "string",
+                                                    "example": "35000"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "200"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Wrong Input Data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "properties": {
+                                                "field_name": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "error in fields"
+                                                    },
+                                                    "collectionFormat": "multi"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "example": 400
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "wrong data"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/Product/{product_no}": {
+            "get": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "single Product info",
+                "description": "show product details",
+                "operationId": "ProductShow",
+                "responses": {
+                    "200": {
+                        "description": "Sucess",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "title": {
+                                                        "type": "string",
+                                                        "example": "mobile"
+                                                    },
+                                                    "product_no": {
+                                                        "type": "string",
+                                                        "example": "CESV2SY"
+                                                    },
+                                                    "description": {
+                                                        "type": "string",
+                                                        "example": "some text"
+                                                    },
+                                                    "amount": {
+                                                        "type": "string",
+                                                        "example": "35000"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "collectionFormat": "multi"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "example": 200
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Delete User's product",
+                "description": "Delete a product",
+                "operationId": "DeleteProduct",
+                "requestBody": {
+                    "description": "Pass product's product_no",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "product_no"
+                                ],
+                                "properties": {
+                                    "product_no": {
+                                        "type": "string",
+                                        "example": "CESV2SY"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Update Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "data": {
+                                                    "type": "array",
+                                                    "items": {},
+                                                    "collectionFormat": "multi"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "200"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Wrong Input Data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "properties": {
+                                                "field name": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "error in fields"
+                                                    },
+                                                    "collectionFormat": "multi"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "example": 400
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "wrong data"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/product/{product_no}": {
+            "put": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Update A Product",
+                "description": "Update a product for an user based on data that passed",
+                "operationId": "createProduct",
+                "requestBody": {
+                    "description": "Pass Product data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "product_no",
+                                    "description",
+                                    "amount"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "example": "mobile"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "some text"
+                                    },
+                                    "amount": {
+                                        "type": "string",
+                                        "example": "35000"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Update Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "mobile"
+                                                },
+                                                "product_no": {
+                                                    "type": "string",
+                                                    "example": "CESV2SY"
+                                                },
+                                                "description": {
+                                                    "type": "string",
+                                                    "example": "some text"
+                                                },
+                                                "amount": {
+                                                    "type": "string",
+                                                    "example": "35000"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "200"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Wrong Input Data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "properties": {
+                                                "field_name": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "error in fields"
+                                                    },
+                                                    "collectionFormat": "multi"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "example": 400
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "wrong data"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
