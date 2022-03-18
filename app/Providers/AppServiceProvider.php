@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Product;
+use App\Observers\ProductObserver;
 use App\Repositories\Interfaces\ProductRepositoryInterface;
 use App\Repositories\ProductRepository;
 use Illuminate\Support\ServiceProvider;
@@ -19,5 +21,10 @@ class AppServiceProvider extends ServiceProvider
             ProductRepositoryInterface::class,
             ProductRepository::class,
         );
+    }
+
+    public function boot()
+    {
+        Product::observe(ProductObserver::class);
     }
 }
