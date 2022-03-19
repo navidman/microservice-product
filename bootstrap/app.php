@@ -49,6 +49,8 @@ $app->singleton(
 );
 
 $app->register(\SwaggerLume\ServiceProvider::class);
+$app->register(VladimirYuldashev\LaravelQueueRabbitMQ\LaravelQueueRabbitMQServiceProvider::class);
+
 
 
 /*
@@ -65,6 +67,8 @@ $app->register(\SwaggerLume\ServiceProvider::class);
 $app->configure('app');
 $app->configure('jwt');
 $app->configure('swagger-lume');
+$app->configure('queue');
+
 
 
 /*
