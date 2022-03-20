@@ -14,7 +14,7 @@ Content-Type    application/x-www-form-urlencoded
 Authorization   Bearer <token>
 
 I implemented observers and job to get models changes and publish in message broker.
-So for authentication in this named you need to run both
+So for authentication in this app you need to run both
 projects at the same time and run <php artisan queue work> command on product app and
 register your user on auth app and get token. rabbitmq will publish changes on user
 model and here app will create the user too. so you can use your token on this app too.
